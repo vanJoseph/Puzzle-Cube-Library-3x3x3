@@ -341,6 +341,25 @@ public class Cube {
         return null;
     }
 
+    public Boolean isSolved(){
+        return checkSideForSameColor(Side.FRONT)&&
+                checkSideForSameColor(Side.REAR)&&
+                checkSideForSameColor(Side.RIGHT)&&
+                checkSideForSameColor(Side.LEFT)&&
+                checkSideForSameColor(Side.TOP)&&
+                checkSideForSameColor(Side.BOTTOM);
+    }
+
+    private Boolean checkSideForSameColor(Side side) {
+        Color[] currentColor = this.get_side_pieces_colors(side);
+        for(Color color: currentColor ){
+            if(currentColor[0]!= color){
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * This method is used for the abstract layer grid to get the coordinate of a position for a clockwise turn.
      *

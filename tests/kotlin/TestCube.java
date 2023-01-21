@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 /**
  * Test whether a cube is a valid which means that it has the correct number of pieces, colors, sides, And that no pieces
  * contains opposite colors.
@@ -206,6 +209,17 @@ public TestCube(Cube cube) {
                     }
                 }
             }
+        }
+        @Test
+        public void Should_BeSolved_When_EachSideColorsMatch() {
+            Cube testCube = new Cube();
+            assertTrue(testCube.isSolved());
+
+            testCube.turn_cube(Side.TOP, TurnDirection.CLOCKWISE);
+            assertFalse(testCube.isSolved());
+
+            testCube.turn_cube(Side.TOP, TurnDirection.COUNTERCLOCKWISE);
+            assertTrue(testCube.isSolved());
         }
 
     public Color get_opposite_color(Color color) {
